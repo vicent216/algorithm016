@@ -1,5 +1,7 @@
 package org.geekbang;
 
+import org.geekbang.bean.ListNode;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -22,15 +24,6 @@ public class SwapPairs {
         while (listNode != null) {
             System.out.print(listNode.val + " ");
             listNode = listNode.next;
-        }
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
         }
     }
 

@@ -5,23 +5,15 @@ import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:两数之和
- * https://leetcode-cn.com/problems/two-sum/description/
+ * Description:
  * User: vi.wei
- * Date: 2020-09-13
- * Time: 01:08
+ * Date: 2020-09-14
+ * Time: 20:39
  */
 public class TwoSum {
 
-    public static void main(String[] args) {
-        int[] input = new int[]{2, 7, 11, 15};
-        int[] result = twoSum(input, 9);
-        for (int i : result) {
-            System.out.print(i + " ");
-        }
-    }
 
-    public static int[] twoSum(int[] nums, int target) {
+    public static int[] twoSum2(int[] nums, int target) {
 
         Map<Integer, Integer> map = new HashMap<>();
 
@@ -32,6 +24,7 @@ public class TwoSum {
             }
             map.put(target - item, i);
         }
-        return new int[0];
+        return null;
     }
+
 }

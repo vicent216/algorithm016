@@ -1,5 +1,7 @@
 package org.geekbang;
 
+import org.geekbang.bean.ListNode;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -9,16 +11,6 @@ package org.geekbang;
  */
 public class ReverseList {
 
-
-    public static class ListNode {
-
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
 
     // recurse version
