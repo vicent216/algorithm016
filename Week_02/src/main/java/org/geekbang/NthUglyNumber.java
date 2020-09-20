@@ -14,28 +14,40 @@ import java.util.PriorityQueue;
  */
 public class NthUglyNumber {
 
-    public int nthUglyNumber(int n) {
+    public static void main(String[] args) {
+        int i = nthUglyNumber(1365);
+        System.out.println(i);
+
+        int a = 430000000;
+        int maxValue = Integer.MAX_VALUE;
+        System.out.println(maxValue);
+    }
+
+    public static int nthUglyNumber(int n) {
 
         int[] uglyNumbers = {2, 3, 5};
 
-        PriorityQueue<Integer> queue = new PriorityQueue<>();
-        HashSet<Integer> set = new HashSet<>();
+        PriorityQueue<Long> queue = new PriorityQueue<>();
+        HashSet<Long> set = new HashSet<>();
 
-        queue.add(1);
+        queue.add(1L);
 
         while (set.size() < n) {
 
-            Integer poll = queue.poll();
+            Long poll = queue.poll();
+
+            if (set.contains(poll)) {
+                continue;
+            }
+
             set.add(poll);
             if (set.size() == n) {
-                return poll;
+                return poll.intValue();
             }
 
             for (int uglyNumber : uglyNumbers) {
-                int addItem = poll * uglyNumber;
-                if (!set.contains(addItem)) {
-                    queue.add(addItem);
-                }
+                long addItem = poll * uglyNumber;
+                queue.add(addItem);
             }
         }
 
