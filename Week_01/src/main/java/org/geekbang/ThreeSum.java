@@ -4,7 +4,8 @@ import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:
+ * Description: 15. 三数之和
+ * https://leetcode-cn.com/problems/3sum/
  * User: vi.wei
  * Date: 2020-09-13
  * Time: 01:24
@@ -17,6 +18,56 @@ public class ThreeSum {
                 13, 29, 55, -82, 76, 26, 15, -29, 36, -29, 10, -70, 69, 17, 49});
         System.out.println(lists);
     }
+
+
+    public static List<List<Integer>> threeSum2(int[] nums) {
+
+        Arrays.sort(nums);
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            int item = nums[i];
+
+            int first = i + 1;
+            int last = nums.length - 1;
+
+            while (first < last) {
+                int sum = nums[first] + nums[last] + item;
+
+                if (sum > 0) {
+                    while (first < last && nums[last - 1] == nums[last]){
+                        last--;
+                    }
+                    last--;
+                    continue;
+                }
+                if (sum < 0) {
+                    while (first < last && nums[first] == nums[first + 1]) {
+                        first++;
+                    }
+                    first++;
+                    continue;
+                }
+
+                result.add(Arrays.asList(item, nums[first], nums[last]));
+                while (first < last && nums[last - 1] == nums[last]){
+                    last--;
+                }
+                last--;
+                while (first < last && nums[first] == nums[first + 1]) {
+                    first++;
+                }
+                first++;
+
+            }
+            while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
+                i++;
+            }
+        }
+        return result;
+    }
+
 
     public static List<List<Integer>> threeSum(int[] nums) {
 

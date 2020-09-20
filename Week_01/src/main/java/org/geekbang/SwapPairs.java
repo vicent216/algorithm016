@@ -4,7 +4,8 @@ import org.geekbang.bean.ListNode;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:
+ * Description: 24. 两两交换链表中的节点
+ * https://leetcode-cn.com/problems/swap-nodes-in-pairs/
  * User: vi.wei
  * Date: 2020-09-13
  * Time: 16:10
@@ -12,19 +13,40 @@ import org.geekbang.bean.ListNode;
 public class SwapPairs {
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(2);
-        head.next = new ListNode(5);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = new ListNode(6);
-        head.next.next.next.next.next = new ListNode(2);
-        head.next.next.next.next.next.next = new ListNode(2);
 
-        ListNode listNode = swapPairs(head);
+
+        ListNode listNode = swapPairs(ListNode.generateList());
         while (listNode != null) {
             System.out.print(listNode.val + " ");
             listNode = listNode.next;
         }
+    }
+
+    public static ListNode swapPairs2(ListNode head) {
+
+        ListNode dummy = new ListNode(-1);
+
+        dummy.next = head;
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode prev = dummy;
+
+        while (prev.next != null && prev.next.next != null) {
+
+            ListNode first = prev.next;
+            ListNode second = prev.next.next;
+
+            prev.next = second;
+            first.next = second.next;
+            second.next = first;
+
+            prev = first;
+        }
+
+        return dummy.next;
     }
 
     public static ListNode swapPairs(ListNode head) {

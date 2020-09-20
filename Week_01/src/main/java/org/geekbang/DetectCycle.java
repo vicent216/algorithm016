@@ -12,6 +12,32 @@ import org.geekbang.bean.ListNode;
  */
 public class DetectCycle {
 
+    public ListNode detectCycle2(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+
+        ListNode first = head;
+        ListNode second = head;
+
+        do {
+            if (second.next == null || second.next.next == null) {
+                return null;
+            }
+            first = first.next;
+            second = second.next.next;
+        } while (first != second);
+
+        first = head;
+        while (first != second) {
+            first = first.next;
+            second = second.next;
+        }
+
+        return first;
+    }
+
+
     public ListNode detectCycle(ListNode head) {
 
         if (head == null || head.next == null) {
