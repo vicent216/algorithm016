@@ -12,6 +12,23 @@ import java.util.*;
  */
 public class GroupAnagrams {
 
+    public List<List<String>> groupAnagrams2(String[] strs) {
+
+        Map<String, List<String>> sortMap = new HashMap<>();
+
+        for (String str : strs) {
+            char[] keyArray = str.toCharArray();
+            Arrays.sort(keyArray);
+
+            String key = Arrays.toString(keyArray);
+            List<String> list = sortMap.getOrDefault(key, new ArrayList<>());
+            list.add(str);
+            sortMap.put(key, list);
+        }
+        return new ArrayList<>(sortMap.values());
+    }
+
+
     public List<List<String>> groupAnagrams(String[] strs) {
 
         Map<String, List<String>> result = new HashMap<>();
@@ -22,11 +39,8 @@ public class GroupAnagrams {
 
             String key = Arrays.toString(chars);
 
-            List<String> groupList = result.get(key);
-            if (groupList == null) {
-                groupList = new ArrayList<>();
-                result.put(key, groupList);
-            }
+            // 这个方法挺好用的
+            List<String> groupList = result.computeIfAbsent(key, k -> new ArrayList<>());
             groupList.add(str);
         }
 
